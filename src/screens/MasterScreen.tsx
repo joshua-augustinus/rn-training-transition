@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Button, Text, TextInput, TouchableOpacity, View, BackHandler, Image } from 'react-native';
+import { SharedElement } from 'react-navigation-shared-element';
 import { SafeAreaView, StackActions } from 'react-navigation';
 import { DrawerActions, NavigationDrawerProp } from 'react-navigation-drawer';
 
@@ -47,7 +48,10 @@ const MasterScreen = (props: Props) => {
                     onPress={() => onMenuPress()}>
                     <Text>Menu</Text>
                 </TouchableOpacity>
-                <Image source={imageSource} style={{ height: '100%', resizeMode: "contain" }} />
+                <SharedElement id="imageId" >
+                    <Image source={imageSource} style={{ height: '100%', resizeMode: "contain" }} />
+                </SharedElement>
+
             </View>
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
 

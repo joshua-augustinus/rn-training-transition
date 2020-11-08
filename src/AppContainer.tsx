@@ -1,13 +1,15 @@
 import { createAppContainer } from 'react-navigation';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import { SideMenu } from './components/SideMenu';
-import { ActivityScreen } from './screens/ActivityScreen';
 import { MasterScreen } from './screens/MasterScreen';
-import { createStackNavigator } from 'react-navigation-stack';
 import { SecondScreen } from './screens/SecondScreen';
+import { createSharedElementStackNavigator } from 'react-navigation-shared-element';
 
 const config = {
     contentComponent: SideMenu
+}
+const stackConfig = {
+    initialRouteName: 'Stack1',
 }
 
 
@@ -17,22 +19,22 @@ const createCustomStackNavigator = (prefix: string) => {
     stackItems["Stack1"] = { screen: MasterScreen };
     stackItems["Stack2"] = { screen: SecondScreen };
 
-    return createStackNavigator(stackItems);
+    return createSharedElementStackNavigator(stackItems, stackConfig);
 }
 
 const RootStack = createDrawerNavigator({
     Home: {
+        // @ts-ignore
         screen: createCustomStackNavigator("Home")
     },
     SecondScreen: {
+        // @ts-ignore
         screen: createCustomStackNavigator("SecondScreen")
     },
     ThirdScreen: {
+        // @ts-ignore
         screen: createCustomStackNavigator("ThirdScreen")
     },
-    Activity: {
-        screen: ActivityScreen
-    }
 }, config);
 const AppContainer = createAppContainer(RootStack);
 

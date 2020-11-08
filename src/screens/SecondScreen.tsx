@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Button, Text, TextInput, TouchableOpacity, View, BackHandler, Image } from 'react-native';
 import { SafeAreaView, StackActions } from 'react-navigation';
 import { DrawerActions, NavigationDrawerProp } from 'react-navigation-drawer';
+import { SharedElement } from 'react-navigation-shared-element';
 
 /**
  * https://reactnavigation.org/docs/4.x/typescript
@@ -50,7 +51,9 @@ const SecondScreen = (props: Props) => {
 
             </View>
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <Image source={imageSource} style={{ width: '100%', resizeMode: "contain" }} />
+                <SharedElement id="imageId" style={{ width: '100%' }}>
+                    <Image source={imageSource} style={{ width: '100%', resizeMode: "contain" }} />
+                </SharedElement>
                 <Text>{props.navigation.state.routeName}</Text>
                 <TextInput placeholder="Enter text here..."></TextInput>
                 <Button title="Press me" onPress={() => onButtonPress()}></Button>
@@ -62,5 +65,9 @@ const SecondScreen = (props: Props) => {
 }
 
 SecondScreen.navigationOptions = {}
+SecondScreen.sharedElements = (navigation, otherNavigation, showing) => {
+
+    return ["imageId"];
+};
 
 export { SecondScreen }
