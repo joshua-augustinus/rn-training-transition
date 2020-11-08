@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { Button, Text, TextInput, TouchableOpacity, View, BackHandler, Image } from 'react-native';
-import { SharedElement } from 'react-navigation-shared-element';
 import { SafeAreaView, StackActions } from 'react-navigation';
 import { DrawerActions, NavigationDrawerProp } from 'react-navigation-drawer';
+import { SharedElement } from 'react-navigation-shared-element';
 
 /**
  * https://reactnavigation.org/docs/4.x/typescript
@@ -13,7 +13,7 @@ type Props = {
 
 const imageSource = require("../../src/assets/logo.png");
 
-const MasterScreen = (props: Props) => {
+const SecondScreen = (props: Props) => {
 
     useEffect(() => {
         BackHandler.addEventListener('hardwareBackPress', function () {
@@ -30,7 +30,7 @@ const MasterScreen = (props: Props) => {
 
     const onButtonPress = () => {
         const pushAction = StackActions.push({
-            routeName: 'Stack2',
+            routeName: 'Stack1',
             params: {
                 myUserId: 9,
             },
@@ -48,13 +48,12 @@ const MasterScreen = (props: Props) => {
                     onPress={() => onMenuPress()}>
                     <Text>Menu</Text>
                 </TouchableOpacity>
-                <SharedElement id="imageId" >
-                    <Image source={imageSource} style={{ height: '100%', resizeMode: "contain" }} />
-                </SharedElement>
 
             </View>
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-
+                <SharedElement id="imageId" style={{ width: '100%' }}>
+                    <Image source={imageSource} style={{ width: '100%', resizeMode: "contain" }} />
+                </SharedElement>
                 <Text>{props.navigation.state.routeName}</Text>
                 <TextInput placeholder="Enter text here..."></TextInput>
                 <Button title="Press me" onPress={() => onButtonPress()}></Button>
@@ -65,6 +64,10 @@ const MasterScreen = (props: Props) => {
 
 }
 
-MasterScreen.navigationOptions = {}
+SecondScreen.navigationOptions = {}
+SecondScreen.sharedElements = (navigation, otherNavigation, showing) => {
 
-export { MasterScreen }
+    return ["imageId"];
+};
+
+export { SecondScreen }
