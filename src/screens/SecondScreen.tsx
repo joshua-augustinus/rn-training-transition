@@ -12,7 +12,7 @@ type Props = {
 
 const imageSource = require("../../src/assets/logo.png");
 
-const MasterScreen = (props: Props) => {
+const SecondScreen = (props: Props) => {
 
     useEffect(() => {
         BackHandler.addEventListener('hardwareBackPress', function () {
@@ -29,7 +29,7 @@ const MasterScreen = (props: Props) => {
 
     const onButtonPress = () => {
         const pushAction = StackActions.push({
-            routeName: 'Stack2',
+            routeName: 'Stack1',
             params: {
                 myUserId: 9,
             },
@@ -47,10 +47,10 @@ const MasterScreen = (props: Props) => {
                     onPress={() => onMenuPress()}>
                     <Text>Menu</Text>
                 </TouchableOpacity>
-                <Image source={imageSource} style={{ height: '100%', resizeMode: "contain" }} />
+
             </View>
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-
+                <Image source={imageSource} style={{ width: '100%', resizeMode: "contain" }} />
                 <Text>{props.navigation.state.routeName}</Text>
                 <TextInput placeholder="Enter text here..."></TextInput>
                 <Button title="Press me" onPress={() => onButtonPress()}></Button>
@@ -61,6 +61,6 @@ const MasterScreen = (props: Props) => {
 
 }
 
-MasterScreen.navigationOptions = {}
+SecondScreen.navigationOptions = {}
 
-export { MasterScreen }
+export { SecondScreen }

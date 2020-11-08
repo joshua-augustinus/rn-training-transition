@@ -4,7 +4,7 @@ import { SideMenu } from './components/SideMenu';
 import { ActivityScreen } from './screens/ActivityScreen';
 import { MasterScreen } from './screens/MasterScreen';
 import { createStackNavigator } from 'react-navigation-stack';
-import { getNestedRouteName } from './utils/StringUtil';
+import { SecondScreen } from './screens/SecondScreen';
 
 const config = {
     contentComponent: SideMenu
@@ -14,8 +14,9 @@ const config = {
 
 const createCustomStackNavigator = (prefix: string) => {
     let stackItems = {};
-    const nestedRouteName = getNestedRouteName(prefix);
-    stackItems[nestedRouteName] = { screen: MasterScreen };
+    stackItems["Stack1"] = { screen: MasterScreen };
+    stackItems["Stack2"] = { screen: SecondScreen };
+
     return createStackNavigator(stackItems);
 }
 
