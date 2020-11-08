@@ -10,6 +10,13 @@ const config = {
 }
 const stackConfig = {
     initialRouteName: 'Stack1',
+    defaultNavigationOptions: {
+        cardStyleInterpolator: ({ current: { progress } }) => {
+            console.log("progress", progress);
+            return { cardStyle: { opacity: progress } }
+        },
+    },
+    headerMode: "none"
 }
 
 
@@ -18,7 +25,7 @@ const createCustomStackNavigator = (prefix: string) => {
     let stackItems = {};
     stackItems["Stack1"] = { screen: MasterScreen };
     stackItems["Stack2"] = { screen: SecondScreen };
-
+    // @ts-ignore
     return createSharedElementStackNavigator(stackItems, stackConfig);
 }
 
