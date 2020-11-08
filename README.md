@@ -9,5 +9,9 @@ cd ..
 
 Run:
 ```
+yarn android
+```
+or
+```
 yarn ios
 ```
